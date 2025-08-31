@@ -1,32 +1,47 @@
-/* O CSS completo do aplicativo é colocado aqui dentro */
+/* --- Estilos Globais da Aplicação --- */
+.app-main {
+  flex-grow: 1; /* Garante que o conteúdo principal ocupe o espaço disponível */
+}
+
+/* --- Estilos do Formulário --- */
 .form-control::placeholder {
   color: #6c757d;
 }
+
 .form-control:focus {
   border-color: #0dcaf0;
   box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
 }
+
+/* --- Animações e Transições --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
+
 .transition-colors {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
 .card, .form-control {
    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
+
+/* --- Layout Responsivo --- */
 .image-display-container {
   height: 200px;
 }
+
 @media (min-width: 992px) {
   .image-display-container {
     height: 100%;
   }
 }
+
 .object-fit-cover {
   object-fit: cover;
 }

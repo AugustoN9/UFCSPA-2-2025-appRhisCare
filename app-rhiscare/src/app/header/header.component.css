@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Story+Script&display=swap");
+
+.app-header {
+  padding: 0.75rem 1rem;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Story Script", sans-serif;
+}
+
+.app-logo {
+  height: 80px;
+  width: auto;
+}
+
+/* --- Estilos para o Seletor de Tema --- */
+.theme-switcher-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-switch-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #adb5bd; /* Cor cinza para o texto inativo */
+  transition: color 0.3s ease-in-out;
+}
+
+.theme-switch-label.active {
+  color: #0dcaf0; /* Cor de destaque para o texto ativo */
+}
+
+.theme-switch {
+  background-color: #e9ecef;
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  cursor: pointer;
+  padding: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.theme-switch-toggle {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilos para o estado ativo (Night) */
+.theme-switch.active {
+  background-color: #0dcaf0; /* Cor de destaque quando ativo */
+}
+
+.theme-switch.active .theme-switch-toggle {
+  transform: translateX(24px); /* Move o círculo para a direita */
+}

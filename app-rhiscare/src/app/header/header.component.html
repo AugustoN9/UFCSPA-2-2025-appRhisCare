@@ -1,0 +1,20 @@
+<header class="app-header shadow-sm bg-white">
+  <div class="container-fluid d-flex justify-content-around align-items-center">
+    
+    <!-- Lado Esquerdo: Logo -->
+    <a class="logo navbar-brand d-flex align-items-center" href="#">
+      <img src="/assets/rhiscareLogo.png" alt="Logomarca Clima e Ar" class="app-logo me-2">
+      <span class="fw-bold d-none d-sm-inline">Respire fundo, viva melhor.</span>
+    </a>
+
+    <!-- Lado Direito: Seletor de Tema -->
+    <div class="theme-switcher-container">
+      <span class="theme-switch-label" [class.active]="theme === 'light'">Light</span>
+      <div class="theme-switch" (click)="toggleTheme()" [class.active]="theme === 'dark'">
+        <div class="theme-switch-toggle"></div>
+      </div>
+      <span class="theme-switch-label" [class.active]="theme === 'dark'">Night</span>
+    </div>
+
+  </div>
+</header>
