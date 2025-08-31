@@ -15,6 +15,8 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/app-rhiscare",
+            "baseHref": "./",
             "assets": [
               {
                 "glob": "**/*",
@@ -22,9 +24,7 @@
               },
               "src/assets"
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -76,9 +76,7 @@
               },
               "src/assets"
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/styles.css"]
           }
         }
       }
