@@ -1,0 +1,67 @@
+# Nome do fluxo de trabalho que aparecerá na aba "Actions" do seu repositório
+name: Build and Deploy to GitHub Pages
+
+# Define quando este fluxo de trabalho deve ser executado
+on:
+  # Executa sempre que houver um push para a branch 'main'
+  push:
+    branches: [ "main" ]
+  # Permite que você execute este fluxo de trabalho manualmente na interface do GitHub
+  workflow_dispatch:
+
+# Define as permissões necessárias para o token do GitHub
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Define o que acontece quando o fluxo de trabalho é cancelado
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+# Define os "trabalhos" (jobs) a serem executados
+jobs:
+  # Um único trabalho chamado 'deploy'
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest # O trabalho será executado em uma máquina virtual Ubuntu
+    steps:
+      # 1. Baixa o código do seu repositório para a máquina virtual
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js na versão que seu projeto precisa
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Use a versão do Node.js compatível com seu projeto
+          cache: 'npm'
+
+      # 3. Instala todas as dependências do projeto (como o Angular, Bootstrap, etc.)
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Constrói (build) o projeto Angular para produção.
+      # O --base-href foi ATUALIZADO para corresponder ao nome do seu repositório.
+      - name: Build
+        run: npm run build -- --base-href /UFCSPA-2-2025-appRhisCare/
+
+      # 5. Configura o ambiente para o GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 6. Faz o upload dos arquivos construídos (da pasta 'dist') como um artefato
+      # O caminho aqui continua 'app-rhiscare' porque esse é o nome do projeto dentro do angular.json
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/app-rhiscare/browser'
+
+      # 7. Implanta (deploy) o artefato no GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
