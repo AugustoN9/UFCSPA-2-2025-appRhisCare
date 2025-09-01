@@ -16,7 +16,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "outputPath": "dist/app-rhiscare",
-            "baseHref": "./",
+            "baseHref": "./UFCSPA-2-2025-appRhisCare",
             "assets": [
               {
                 "glob": "**/*",
