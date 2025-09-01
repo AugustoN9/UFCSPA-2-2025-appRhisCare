@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allCards.forEach(card => {
             card.classList.toggle('bg-dark', isDark);
             card.classList.toggle('border-secondary', isDark);
+            card.classList.toggle('text-light', isDark); 
         });
 
         const allInputs = document.querySelectorAll('.form-control, .form-select');
