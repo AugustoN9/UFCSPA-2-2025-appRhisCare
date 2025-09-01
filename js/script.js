@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- ESTADO DA APLICAÇÃO ---
     const apiKey = 'd150d78d3792996302365bee7eb5ea0f'; // Chave da API
+    const unsplashApiKey = 'izArQR2ADfjSFvm9NBVRqNzzh5oMJT2vb_LZiYfLIJg'; // <-- ACCESS KEY DO UNSPLASH
     let currentTheme = 'light';
     let selectedAvatarSrc = null;
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const appMain = document.getElementById('app-main');
     
     // --- SELETORES DO CLIMA ---
+    const cityImage = document.getElementById('city-image');
     const mainCard = document.getElementById('main-card');
     const cityInput = document.getElementById('city-input');
     const searchButton = document.getElementById('search-button');
@@ -191,6 +193,31 @@ document.addEventListener('DOMContentLoaded', () => {
             displayError(error.message);
         } finally {
            showLoading(false);
+        }
+    };
+
+    // NOVA FUNÇÃO para buscar imagem da cidade
+    const getCityImage = async (city) => {
+        const defaultImage = 'https://images.unsplash.com/photo-1534430480872-3498386e7856?q=80&w=1964&auto=format&fit=crop';
+        if (!unsplashApiKey || unsplashApiKey === 'izArQR2ADfjSFvm9NBVRqNzzh5oMJT2vb_LZiYfLIJg') {
+            console.warn('Chave da API do Unsplash não configurada. Usando imagem padrão.');
+            return defaultImage;
+        }
+        try {
+            const response = await fetch(`https://api.unsplash.com/search/photos?query=${city}&client_id=${unsplashApiKey}&per_page=1&orientation=landscape`);
+            if (!response.ok) {
+                console.error('Erro ao buscar imagem da cidade no Unsplash.');
+                return defaultImage;
+            }
+            const data = await response.json();
+            if (data.results && data.results.length > 0) {
+                return data.results[0].urls.regular; // Retorna a URL da imagem
+            } else {
+                return defaultImage; // Retorna a imagem padrão se não encontrar resultados
+            }
+        } catch (error) {
+             console.error('Falha na requisição da imagem:', error);
+             return defaultImage;
         }
     };
     
