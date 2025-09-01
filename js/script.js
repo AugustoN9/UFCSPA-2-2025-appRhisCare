@@ -39,20 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDark = currentTheme === 'dark';
         
         // Tema para elementos principais
-        appMain.classList.toggle('bg-dark', isDark);
+        appMain.classList.toggle('newDarkTheme', isDark);
         appMain.classList.toggle('text-white', isDark);
         
         // Tema para todos os cards e inputs
         const allCards = document.querySelectorAll('.card');
         allCards.forEach(card => {
-            card.classList.toggle('bg-dark', isDark);
+            card.classList.toggle('newDarkTheme', isDark);
             card.classList.toggle('border-secondary', isDark);
             card.classList.toggle('text-light', isDark); 
         });
 
         const allInputs = document.querySelectorAll('.form-control, .form-select');
         allInputs.forEach(input => {
-            input.classList.toggle('bg-dark', isDark);
+            input.classList.toggle('newDarkTheme', isDark);
             input.classList.toggle('text-white', isDark);
             input.classList.toggle('border-secondary', isDark);
         });
