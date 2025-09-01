@@ -15,6 +15,10 @@ body,
      background-color: #e9ecef;
 }
 
+.newDarkTheme{
+  background-color: #007782;
+}
+
 /* --- NOVO --- Define uma altura mínima para a área de conteúdo principal */
 #app-main {
   /* 100vh é 100% da altura da tela. Subtraímos a altura aproximada do header. */
