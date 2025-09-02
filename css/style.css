@@ -23,6 +23,7 @@ body,
 .menu{
   background-color: #	#DCDCDC;
   font-family: "Roboto Condensed", sans-serif;
+  z-index: 99;
 }  
 
 /* Define uma altura mínima para a área de conteúdo principal */
