@@ -110,9 +110,123 @@
           </div>
         </section>
 
-        <!-- Seção de Criar Conta -->
+        <!-- NOVA SEÇÃO DE NOTÍCIAS -->
+        <section
+          id="news-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Últimas Notícias sobre Saúde e Bem-Estar
+            </h2>
+            <div
+              id="news-carousel"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner" id="news-carousel-inner">
+                <!-- Itens do carrossel serão inseridos aqui pelo JavaScript -->
+                <div class="carousel-item active">
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                    style="height: 200px"
+                  >
+                    <div class="spinner-border text-info" role="status">
+                      <span class="visually-hidden"
+                        >Carregando notícias...</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#news-carousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#news-carousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Próximo</span>
+              </button>
+            </div>
+          </div>
+        </section>
 
-        <section id="account-creation-section" class="card shadow-lg mt-4" style="width: 100%; max-width: 960px">
+        <!-- NOVA SEÇÃO DE LOGIN -->
+        <section
+          id="login-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Acesse sua Conta
+            </h2>
+            <form id="login-form" novalidate>
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="login-email" class="form-label">Email</label
+                    ><input
+                      type="email"
+                      class="form-control"
+                      id="login-email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="login-password" class="form-label">Senha</label
+                    ><input
+                      type="password"
+                      class="form-control"
+                      id="login-password"
+                      required
+                    />
+                  </div>
+                  <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-info px-5">
+                      Entrar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <small
+                >Não tem uma conta?
+                <a
+                  href="#"
+                  id="show-create-account-link"
+                  class="auth-toggle-link"
+                  >Crie uma aqui</a
+                >.</small
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção de Criar Conta -->
+        <section
+          id="account-creation-section"
+          class="card shadow-lg mt-4 d-none"
+          style="width: 100%; max-width: 960px"
+        >
           <div class="card-body p-4 p-md-5">
             <h2 class="text-center h4 fw-bold text-info mb-4">
               Crie sua Conta
@@ -158,51 +272,63 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="row g-3">
-                  <div class="col-12">
-                    <label for="acc-email" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="acc-email"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="acc-password" class="form-label"
-                      >Crie uma Senha</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="acc-password"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="acc-confirm-password" class="form-label"
-                      >Confirme a Senha</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="acc-confirm-password"
-                      required
-                    />
-                  </div>
-                  <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-info px-5">
-                      Criar Conta
-                    </button>
-                  </div>
+                <div class="col-12">
+                  <label for="acc-email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="acc-email"
+                    required
+                  />
                 </div>
+                <div class="col-md-6">
+                  <label for="acc-password" class="form-label"
+                    >Crie uma Senha</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="acc-password"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="acc-confirm-password" class="form-label"
+                    >Confirme a Senha</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="acc-confirm-password"
+                    required
+                  />
+                </div>
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-info px-5">
+                    Criar Conta
+                  </button>
+                </div>
+              </div>
             </form>
+            <div class="text-center mt-3">
+              <small
+                >Já tem uma conta?
+                <a href="#" id="show-login-link" class="auth-toggle-link"
+                  >Entre aqui</a
+                >.</small
+              >
+            </div>
           </div>
         </section>
 
         <!-- Nova Seção de Cadastro -->
-        <section id="registration-section" class="card shadow-lg mt-4" style="width: 100%; max-width: 960px">
+        <section
+          id="registration-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
           <div class="card-body p-4 p-md-5">
             <h2 class="text-center h4 fw-bold text-info mb-4">
               Faça seu Cadastro e Receba Dicas de Bem-Estar
@@ -407,6 +533,63 @@
                     Cadastrar
                   </button>
                 </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- NOVA SEÇÃO DE COMENTÁRIOS -->
+        <section
+          id="comment-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Deixe seu Comentário
+            </h2>
+            <form id="comment-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="reg-name" class="form-label fw-bold"
+                    >Nome Completo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reg-name2"
+                    placeholder="Seu nome"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="reg-email" class="form-label fw-bold"
+                    >Seu email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="reg-email2"
+                    placeholder="Seu email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="user-comment" class="form-label fw-bold"
+                  >Sua opinião, crítica ou sugestão é muito bem-vinda!</label
+                >
+                <textarea
+                  class="form-control"
+                  id="user-comment"
+                  rows="4"
+                  placeholder="Escreva aqui..."
+                ></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-info px-5">
+                  Enviar Comentário
+                </button>
               </div>
             </form>
           </div>

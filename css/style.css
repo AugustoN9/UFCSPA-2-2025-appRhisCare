@@ -12,16 +12,15 @@ body,
 
 #registration-section{
      font-family: "Roboto Condensed", sans-serif;
-     -background-color: #e9ecef;
 }
 
+/* --- TEMA ESCURO PERSONALIZADO --- */
 .newDarkTheme{
   background-color: #007782;
 }
 
-/* --- NOVO --- Define uma altura mínima para a área de conteúdo principal */
+/* Define uma altura mínima para a área de conteúdo principal */
 #app-main {
-  /* 100vh é 100% da altura da tela. Subtraímos a altura aproximada do header. */
   min-height: calc(100vh - 72px);
 }
 
@@ -161,3 +160,33 @@ body,
     height: 100%;
 }
 
+/* Estilo para os links de alternar entre login e criar conta */
+.auth-toggle-link {
+    cursor: pointer;
+    color: var(--bs-info);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-toggle-link:hover {
+    text-decoration: underline;
+}
+
+/* --- ESTILOS PARA O CARROSSEL DE NOTÍCIAS --- */
+.news-image {
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    /* AJUSTE: Garante que a legenda não fique muito baixa */
+    bottom: 1.25rem; 
+}
+
+.carousel-caption h5 {
+    font-size: 1.1rem;
+}
