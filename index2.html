@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rhis Care - Clima e Ar</title>
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Seu CSS customizado -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app-container">
+      <!-- Header -->
+      <header id="app-header" class="app-header shadow-sm bg-white">
+        <div
+          class="container-fluid d-flex justify-content-around align-items-center"
+        >
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <!-- A imagem agora busca da sua pasta local -->
+            <img
+              src="images/rhiscareLogo.png"
+              alt="Logomarca Rhis Care"
+              class="app-logo me-2"
+            />
+          </a>
+
+          <div class="logo">
+            <span class="fw-bold d-none d-sm-inline"
+              >Respire fundo, viva melhor.</span
+            >
+          </div>
+          <div class="theme-switcher-container">
+            <span id="light-label" class="theme-switch-label">Light</span>
+            <div id="theme-switch" class="theme-switch">
+              <div class="theme-switch-toggle"></div>
+            </div>
+            <span id="night-label" class="theme-switch-label">Night</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Conteúdo Principal -->
+      <main
+        id="app-main"
+        class="app-main d-flex flex-column align-items-center justify-content-center p-3"
+      >
+        <section
+          class="card shadow-lg overflow-hidden"
+          id="main-card"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="row g-0">
+            <div class="col-lg-5">
+              <div class="image-display-container position-relative">
+                <img
+                  id="city-image"
+                  src="https://images.unsplash.com/photo-1534430480872-3498386e7856?q=80&w=1964&auto=format&fit=crop"
+                  class="w-100 h-100 object-fit-cover"
+                  alt="Imagem de uma cidade brasileira"
+                />
+              </div>
+            </div>
+            <div class="col-lg-7 d-flex flex-column">
+              <div class="card-body p-4 p-md-5 flex-grow-1 d-flex flex-column">
+                <div class="text-center mb-4">
+                  <h1 class="h3 fw-bold text-info">Clima e Ar no Brasil</h1>
+                  <p id="subtitle" class="text-body-secondary">
+                    Insira o nome de uma cidade
+                  </p>
+                </div>
+                <div class="d-flex flex-column gap-3 mb-4">
+                  <label for="city-input" class="form-label small"
+                    >Cidade</label
+                  >
+                  <div class="input-group">
+                    <input
+                      id="city-input"
+                      type="text"
+                      placeholder="Ex: Porto Alegre"
+                      class="form-control form-control-lg"
+                    />
+                    <button id="search-button" class="btn btn-info btn-lg">
+                      <i id="search-icon" class="bi bi-search"></i>
+                      <span
+                        id="loading-spinner"
+                        class="spinner-border spinner-border-sm d-none"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Área de Resultados Dinâmicos -->
+                <div id="error-container" class="mt-auto"></div>
+                <div id="results-container" class="mt-auto"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOVA SEÇÃO DE NOTÍCIAS -->
+        <section
+          id="news-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Últimas Notícias sobre Saúde e Bem-Estar
+            </h2>
+            <div
+              id="news-carousel"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner" id="news-carousel-inner">
+                <!-- Itens do carrossel serão inseridos aqui pelo JavaScript -->
+                <div class="carousel-item active">
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                    style="height: 200px"
+                  >
+                    <div class="spinner-border text-info" role="status">
+                      <span class="visually-hidden"
+                        >Carregando notícias...</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#news-carousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#news-carousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Próximo</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOVA SEÇÃO DE LOGIN -->
+        <section
+          id="login-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Acesse sua Conta
+            </h2>
+            <form id="login-form" novalidate>
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="login-email" class="form-label">Email</label
+                    ><input
+                      type="email"
+                      class="form-control"
+                      id="login-email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="login-password" class="form-label">Senha</label
+                    ><input
+                      type="password"
+                      class="form-control"
+                      id="login-password"
+                      required
+                    />
+                  </div>
+                  <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-info px-5">
+                      Entrar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <small
+                >Não tem uma conta?
+                <a
+                  href="#"
+                  id="show-create-account-link"
+                  class="auth-toggle-link"
+                  >Crie uma aqui</a
+                >.</small
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção de Criar Conta -->
+        <section
+          id="account-creation-section"
+          class="card shadow-lg mt-4 d-none"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Crie sua Conta
+            </h2>
+            <form id="account-creation-form" novalidate>
+              <div id="account-error-container" class="mb-3"></div>
+
+              <div class="text-center mb-4">
+                <label class="form-label d-block"
+                  >Escolha seu avatar de perfil</label
+                >
+                <div
+                  id="profile-avatar-display"
+                  class="profile-avatar-display mx-auto mb-3"
+                >
+                  <!-- O avatar padrão continua sendo um SVG embutido para facilitar o reset -->
+                  <img
+                    src="images/monster-icons/kidaha-01.svg"
+                    alt="Avatar Sorriso"
+                  />
+                </div>
+                <div
+                  id="avatar-choices"
+                  class="d-flex justify-content-center gap-3"
+                >
+                  <div class="avatar-choice" title="Avatar Sorriso">
+                    <img
+                      src="images/monster-icons/kidaha-02.svg"
+                      alt="Avatar Sorriso"
+                    />
+                  </div>
+                  <div class="avatar-choice" title="Avatar Coração">
+                    <img
+                      src="images/monster-icons/kidaha-03.svg"
+                      alt="Avatar Coração"
+                    />
+                  </div>
+                  <div class="avatar-choice" title="Avatar Estrela">
+                    <img
+                      src="images/monster-icons/kidaha-04.svg"
+                      alt="Avatar Estrela"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="acc-email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="acc-email"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="acc-password" class="form-label"
+                    >Crie uma Senha</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="acc-password"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="acc-confirm-password" class="form-label"
+                    >Confirme a Senha</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="acc-confirm-password"
+                    required
+                  />
+                </div>
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-info px-5">
+                    Criar Conta
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <small
+                >Já tem uma conta?
+                <a href="#" id="show-login-link" class="auth-toggle-link"
+                  >Entre aqui</a
+                >.</small
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Nova Seção de Cadastro -->
+        <section
+          id="registration-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Faça seu Cadastro e Receba Dicas de Bem-Estar
+            </h2>
+            <form id="registration-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="reg-name" class="form-label fw-bold"
+                    >Nome Completo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reg-name"
+                    placeholder="Seu nome"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="reg-email" class="form-label fw-bold"
+                    >Seu email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="reg-email"
+                    placeholder="Seu email"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="reg-dob" class="form-label fw-bold"
+                    >Data de Nascimento</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="reg-dob"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <label class="form-label d-block pt-2 fw-bold">Gênero</label>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="gender-male"
+                      value="male"
+                    />
+                    <label class="form-check-label" for="gender-male"
+                      >Masculino</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="gender-female"
+                      value="female"
+                    />
+                    <label class="form-check-label" for="gender-female"
+                      >Feminino</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label d-block pt-2 fw-bold"
+                    >Quais assuntos de bem-estar te interessam?</label
+                  >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="mental"
+                      id="interest-mental"
+                    />
+                    <label class="form-check-label" for="interest-mental"
+                      >Cuidados com a saúde mental</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="physical"
+                      id="interest-physical"
+                    />
+                    <label class="form-check-label" for="interest-physical"
+                      >Cuidados com a saúde física</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="child"
+                      id="interest-child"
+                    />
+                    <label class="form-check-label" for="interest-child"
+                      >Cuidados com a saúde infantil</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="food"
+                      id="interest-food"
+                    />
+                    <label class="form-check-label" for="interest-food"
+                      >Cuidados com a alimentação</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="reading"
+                      id="interest-reading"
+                    />
+                    <label class="form-check-label" for="interest-reading"
+                      >Sugestão de leitura da semana</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="reg-mood" class="form-label pt-2 fw-bold"
+                    >Como você se considera hoje?</label
+                  >
+                  <select class="form-select" id="reg-mood">
+                    <option selected disabled value="">
+                      Escolha uma opção...
+                    </option>
+                    <option value="happy">Muito Feliz</option>
+                    <option value="fulfilled">Realizado(a)</option>
+                    <option value="hopeful">Esperançoso(a)</option>
+                    <option value="lazy">Preguiçoso(a)</option>
+                    <option value="settled">Acomodado(a)</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label d-block pt-2 fw-bold"
+                    >Você apresenta alguma destas alergias respiratórias?</label
+                  >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="rinite"
+                      id="rinite"
+                    />
+                    <label class="form-check-label" for="rinite">Rinite</label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="sinusite"
+                      id="sinusite"
+                    />
+                    <label class="form-check-label" for="sinusite"
+                      >Sinusite</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="bronquite"
+                      id="bronquite"
+                    />
+                    <label class="form-check-label" for="bronquite"
+                      >Bronquite</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="faringite"
+                      id="faringite"
+                    />
+                    <label class="form-check-label" for="faringite"
+                      >Faringite</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value="asma"
+                      id="asma"
+                    />
+                    <label class="form-check-label" for="asma">Asma</label>
+                  </div>
+                </div>
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-info px-5">
+                    Cadastrar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- NOVA SEÇÃO DE COMENTÁRIOS -->
+        <section
+          id="comment-section"
+          class="card shadow-lg mt-4"
+          style="width: 100%; max-width: 960px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h2 class="text-center h4 fw-bold text-info mb-4">
+              Deixe seu Comentário
+            </h2>
+            <form id="comment-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="reg-name" class="form-label fw-bold"
+                    >Nome Completo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reg-name2"
+                    placeholder="Seu nome"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="reg-email" class="form-label fw-bold"
+                    >Seu email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="reg-email2"
+                    placeholder="Seu email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="user-comment" class="form-label fw-bold"
+                  >Sua opinião, crítica ou sugestão é muito bem-vinda!</label
+                >
+                <textarea
+                  class="form-control"
+                  id="user-comment"
+                  rows="4"
+                  placeholder="Escreva aqui..."
+                ></textarea>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-info px-5">
+                  Enviar Comentário
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-dark text-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div
+          class="text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.05)"
+        >
+          <p>Desenvolvido por @AugustoN9</p>
+          <p>2025</p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+
+    <!-- Seu JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
