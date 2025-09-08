@@ -19,6 +19,16 @@ body,
   background-color: #007782;
 }
 
+/* --- MENU --- */
+.menu{
+  background-color: #DCDCDC;
+  font-family: "Roboto Condensed", sans-serif;
+}  
+
+.menuTexto{
+   font-size: 1.2rem;
+}
+
 /* Define uma altura mínima para a área de conteúdo principal */
 #app-main {
   min-height: calc(100vh - 72px);
