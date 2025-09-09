@@ -51,6 +51,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const showCreateAccountLink = document.getElementById("show-create-account-link");
   const showLoginLink = document.getElementById("show-login-link");
 
+  // --- LÓGICA PARA FECHAR O MENU NAVBAR EM TELAS PEQUENAS ---
+  const mainNavbar = document.getElementById("mainNavbar");
+  const navItems = mainNavbar.querySelectorAll(".nav-link, .theme-switch");
+  const bsCollapse = new bootstrap.Collapse(mainNavbar, {
+    toggle: false // Evita que o menu abra ou feche na inicialização
+  });
+
+  // Adiciona um listener de clique para cada item clicável dentro do menu
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Verifica se o menu está atualmente expandido (visível em telas pequenas).
+      // A classe 'show' é adicionada pelo Bootstrap quando o menu está aberto.
+      if (mainNavbar.classList.contains("show")) {
+        // Usa o método da API do Bootstrap 5 para fechar o menu de forma programática.
+        bsCollapse.hide();
+      }
+    });
+  });
 
   // --- FUNÇÕES DE LÓGICA ---
 
